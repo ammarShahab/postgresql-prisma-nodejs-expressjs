@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = env("DATABASE_URL")
+}
+
+// 7.0 creating a user model
+model User {
+  id String @id @default(ulid())
+  name String 
+  email String @unique
+  password String 
+
+  createdAt DateTime @default(now())
+}
+
+// 7.1 now run in the terminal to migrate users table in NeonDB database "npx prisma migrate dev --name add_users_table". But if u want to check in prisma studio run "npx prisma studio" it will also show the users table in the prisma studio database.
+
+/* 7.2 Prisma doesn't give you a generic database client. Instead, it generates a type-safe client that knows your exact schema. So run "npx prisma generate" to generate the client.
+
+After running "npx prisma generate", you can write:
+prisma.movie.findMany()   // ✅ Type-safe, autocomplete works
+prisma.movie.crete()      // ❌ Typo caught immediately by IDE
+ */
+
+// 7.3 creating a movie model
+model Movie {
+  id String @id @default(ulid())
+  title String
+  overview String?
+  releasedYear Int
+  genre String[] @default([])
+  runtime Int?
+  posterUrl String?
+  createdBy String
+  createdAt DateTime @default(now())
+}
+
+// 7.4 Creating a watch list model
+model WatchList {
+  id String @id @default(ulid())
+  movieId String
+  userId String
+  status WatchListStatus @default(PLANNED)
+  rating Int?
+  note String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+// 7.5 creating an enum for WatchListStatus
+enum WatchListStatus {
+  PLANNED
+  WATCHING
+  COMPLETED
+  DROPPED
+}
