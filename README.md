@@ -77,3 +77,5 @@ Flow:
 7.11
 
 7.12 now run "npx prisma migrate dev --name add_other_tables" and "npx prisma generate"
+
+<!-- todo: start tutorial from 56:45 -->
