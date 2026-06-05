@@ -19,8 +19,14 @@ model User {
   name String 
   email String @unique
   password String 
+  // 7.7 relate with the WatchList model as it is showing error
+  watchLists WatchList[]
 
   createdAt DateTime @default(now())
+  // 7.11
+  movies Movie[] @relation("MovieCreator")
+
+  // 7.12 now run "npx prisma migrate dev --name add_other_tables" and "npx prisma generate"
 }
 
 // 7.1 now run in the terminal to migrate users table in NeonDB database "npx prisma migrate dev --name add_users_table". But if u want to check in prisma studio run "npx prisma studio" it will also show the users table in the prisma studio database.
@@ -41,8 +47,13 @@ model Movie {
   genre String[] @default([])
   runtime Int?
   posterUrl String?
+  // 7.9
+  watchlist WatchList[]
   createdBy String
   createdAt DateTime @default(now())
+
+  // 7.10 as there is a createdBy field which is also a relational data with user
+  creator User @relation("MovieCreator", fields: [createdBy], references: [id], onDelete: Cascade)
 }
 
 // 7.4 Creating a watch list model
@@ -55,6 +66,27 @@ model WatchList {
   note String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // 7.6 creating relationships as the WatchList model both relates to Movie and User models. Cascade means delete the watchlist if the movie or user is deleted. During creating the user it shows error because we didn't create the Opposite relation field in the User model.
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /* 
+  Breakdown of the "user User @relation(fields: [userId], references: [id], onDelete: Cascade)" 
+
+| Part                | Meaning                                                    |
+| ------------------- | ---------------------------------------------------------- |
+| `user`              | The field name you use in code: `watchList.user`           |
+| `User`              | The model this field connects to                           |
+| `@relation`         | Tells Prisma this is a relationship, not normal data       |
+| `fields: [userId]`  | This model's foreign key is `userId`                       |
+| `references: [id]`  | It matches the `id` field on the `User` model              |
+| `onDelete: Cascade` | **If User is deleted → auto-delete all linked WatchLists** |
+   */
+
+  // 7.8
+  movie Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+
+
 }
 // 7.5 creating an enum for WatchListStatus
 enum WatchListStatus {

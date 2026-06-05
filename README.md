@@ -51,3 +51,29 @@ Flow:
 6.8 import the prisma, connectDB and disconnectDB
 
 6.9 connect with database
+
+7.0 creating a user model
+
+7.1 now run in the terminal to migrate users table in NeonDB database "npx prisma migrate dev --name add_users_table". But if u want to check in prisma studio run "npx prisma studio" it will also show the users table in the prisma studio database.
+
+7.2 Prisma doesn't give you a generic database client. Instead, it generates a type-safe client that knows your exact schema. So run "npx prisma generate" to generate the client.
+
+7.3 creating a movie model
+
+7.4 Creating a watch list model
+
+7.5 creating an enum for WatchListStatus
+
+7.6 creating relationships as the WatchList model both relates to Movie and User models. Cascade means delete the watchlist if the movie or user is deleted. During creating the user it shows error because we didn't create the Opposite relation field in the User model.
+
+7.7 relate with the WatchList model as it is showing error
+
+7.8
+
+7.9
+
+7.10 as there is a createdBy field which is also a relational data with user
+
+7.11
+
+7.12 now run "npx prisma migrate dev --name add_other_tables" and "npx prisma generate"
