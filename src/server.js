@@ -16,6 +16,9 @@ import { prisma, connectDB, disconnectDB } from "./config/db.js";
 // 2.1 created a express app
 const app = express();
 
+// 8.5 Body parsing middlewares
+app.use(express.json());
+
 // 4.5 use the movieRoute which is a API route
 app.use("/movies", movieRoute);
 
