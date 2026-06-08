@@ -12,12 +12,16 @@ import { config } from "dotenv";
 
 // 6.8 import the prisma, connectDB and disconnectDB
 import { prisma, connectDB, disconnectDB } from "./config/db.js";
+import cookieParser from "cookie-parser";
 
 // 2.1 created a express app
 const app = express();
 
 // 8.5 Body parsing middlewares
 app.use(express.json());
+
+// 10.8 add the cookieParser
+app.use(cookieParser());
 
 // 4.5 use the movieRoute which is a API route
 app.use("/movies", movieRoute);

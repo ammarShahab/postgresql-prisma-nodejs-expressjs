@@ -1,7 +1,7 @@
 // 8.1 created a controller folder with a authController.js file
 import bcrypt, { hash } from "bcryptjs";
 import { prisma } from "../config/db.js";
-import { error } from "node:console";
+import { generateToken } from "../utils/generateToken.js";
 
 //  8.2 created a register function
 const register = async (req, res) => {
@@ -28,6 +28,9 @@ const register = async (req, res) => {
     },
   });
 
+  // 10.2 get the token by call the generateToken function
+  const token = generateToken(user.id, res);
+
   // 8.8 save the data with the status code
   res.status(201).json({
     message: "success",
@@ -36,6 +39,8 @@ const register = async (req, res) => {
       name,
       email,
       password,
+      // 10.3 send the token
+      token,
     },
   });
 };
@@ -58,11 +63,16 @@ const login = async (req, res) => {
     return res.status(401).json({ error: "Invalid email or password" });
   }
 
+  // 10.4 get the token by call the generateToken function also in login
+  const token = generateToken(user.id, res);
+
   res.status(201).json({
     message: "success",
     data: {
       id: user.id,
       email,
+      // 10.5 send the token
+      token,
     },
   });
 };

@@ -99,4 +99,26 @@ Flow:
 
 8.8 save the data with the status code
 
-<!-- todo: start tutorial from 1:14:10 -->
+9.0 creating a login function
+
+9.1 creating login routes
+
+10.0 add jwt secret in cookies during register and login. so to create the token run "npm i jsonwebtoken" then run in the terminal "openssl rand -base64 32" and save it in the env file
+
+10.1 create a utils folder (for reusable function) and created reusable generateToken function and use it in register and login
+
+10.2 get the token by call the generateToken function
+
+10.3 send the token
+
+10.4 get the token by call the generateToken function also in login
+
+10.5 send the token
+
+10.6 to securely set the jwt token is the HTTP only so pass the second parameter which is res
+
+10.7 then set the cookie securely also run "npm install cookie-parser"
+
+10.8 add the cookieParser
+
+<!-- todo: start tutorial from 1:28:00 -->
