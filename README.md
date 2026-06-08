@@ -125,4 +125,4 @@ Flow:
 
 11.1 creating logut routes
 
-<!-- todo: start tutorial from 1:28:00 -->
+<!-- todo: start tutorial from 1:31:00 -->
