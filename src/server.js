@@ -12,6 +12,9 @@ import { config } from "dotenv";
 // 6.8 import the prisma, connectDB and disconnectDB
 import { prisma, connectDB, disconnectDB } from "./config/db.js";
 
+// 2.1 created a express app
+const app = express();
+
 // 4.5 use the movieRoute which is a API route
 app.use("/movies", movieRoute);
 
@@ -20,9 +23,6 @@ config();
 
 // 6.9 connect with database
 connectDB();
-
-// 2.1 created a express app
-const app = express();
 
 // 2.2 created a port
 const PORT = 5000;
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 });
 
 // 2.4 listen the database connection
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
 

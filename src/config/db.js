@@ -1,14 +1,14 @@
 // 6.3 created a database connection in db.js file in config folder
+
 import { PrismaClient } from "@prisma/client";
 
 // 6.4 if the app is in production mode, then we need to log the queries and errors
-export const prisma = new PrismaClient(
-  process.env.NODE_ENV === "production"
-    ? {
-        log: ["query", "error", "warn"],
-      }
-    : ["error"],
-);
+const prisma = new PrismaClient({
+  log:
+    process.env.NODE_ENV === "production"
+      ? ["query", "error", "warn"]
+      : ["error"],
+});
 
 // 6.5 connect  with database
 const connectDB = async () => {
