@@ -121,4 +121,8 @@ Flow:
 
 10.8 add the cookieParser
 
+11.0 implementing manual logout
+
+11.1 creating logut routes
+
 <!-- todo: start tutorial from 1:28:00 -->

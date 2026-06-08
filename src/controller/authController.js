@@ -76,5 +76,13 @@ const login = async (req, res) => {
     },
   });
 };
-// 8.3 export the register function
-export { register, login };
+
+// 11.0 implementing manual logout
+const logOut = async (req, res) => {
+  res.cookie("jwt", "");
+
+  res.status(200).json({ message: "successfully logged out" });
+};
+
+// 8.3 export the register, login and logOut function
+export { register, login, logOut };
