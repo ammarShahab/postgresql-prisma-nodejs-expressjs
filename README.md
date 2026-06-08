@@ -78,4 +78,16 @@ Flow:
 
 7.12 now run "npx prisma migrate dev --name add_other_tables" and "npx prisma generate"
 
+8.0 creating a authentication system so create a authRoute.js file
+
+8.0.1
+
+8.0.2
+
+8.1 created a controller folder with a authController.js file
+
+8.2 created a register function
+
+8.3 export the register function
+
 <!-- todo: start tutorial from 56:45 -->

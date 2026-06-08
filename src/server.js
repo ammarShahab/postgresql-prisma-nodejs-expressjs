@@ -5,6 +5,7 @@
 import express from "express";
 // 4.4 import the movieRoute
 import movieRoute from "./routes/movieRoute.js";
+import authRoutes from "./routes/authRoutes.js";
 
 // 6.1 import the dotenv
 import { config } from "dotenv";
@@ -17,6 +18,9 @@ const app = express();
 
 // 4.5 use the movieRoute which is a API route
 app.use("/movies", movieRoute);
+
+// 8.4 use the authRoutes
+app.use("/auth", authRoutes);
 
 // 6.2 use the dotenv
 config();
