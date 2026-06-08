@@ -1,6 +1,7 @@
 // 8.1 created a controller folder with a authController.js file
 import bcrypt, { hash } from "bcryptjs";
 import { prisma } from "../config/db.js";
+import { error } from "node:console";
 
 //  8.2 created a register function
 const register = async (req, res) => {
@@ -39,5 +40,31 @@ const register = async (req, res) => {
   });
 };
 
+// 9.0 creating a login function
+const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await prisma.user.findUnique({
+    where: { email: email },
+  });
+
+  if (!user) {
+    return res.status(401).json({ error: "Invalid email or password" });
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordValid) {
+    return res.status(401).json({ error: "Invalid email or password" });
+  }
+
+  res.status(201).json({
+    message: "success",
+    data: {
+      id: user.id,
+      email,
+    },
+  });
+};
 // 8.3 export the register function
-export { register };
+export { register, login };
