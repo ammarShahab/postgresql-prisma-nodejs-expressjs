@@ -94,8 +94,7 @@ Flow:
 
 8.5 Body parsing middlewares
 
-8.6 for hashing password first install "npm i bcrypt"
-
+8.6 for hashing password first install "npm i bcryptjs"
 8.7 create user
 
 8.8 save the data with the status code
