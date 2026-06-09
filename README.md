@@ -125,4 +125,8 @@ Flow:
 
 11.1 creating logut routes
 
-<!-- todo: start tutorial from 1:31:00 -->
+12.0 my requirement is to seed my database with users and movies
+
+12.1 to run the script add seeding script in package.json "seed:movies": "node prisma/seed/seed.js" then run in the terminal "npm run seed:movies"
+
+<!-- todo: start tutorial from 1:37:10 -->
