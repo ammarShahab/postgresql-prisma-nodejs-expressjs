@@ -40,7 +40,7 @@ prisma.movie.crete()      // ❌ Typo caught immediately by IDE
 
 // 7.3 creating a movie model
 model Movie {
-  id String @id @default(ulid())
+  id String @id @default(uuid())
   title String
   overview String?
   releasedYear Int
@@ -58,7 +58,7 @@ model Movie {
 
 // 7.4 Creating a watch list model
 model WatchList {
-  id String @id @default(ulid())
+  id String @id @default(uuid())
   movieId String
   userId String
   status WatchListStatus @default(PLANNED)
