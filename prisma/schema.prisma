@@ -85,7 +85,9 @@ model WatchList {
   // 7.8
   movie Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
 
-
+// 13.3 adding a unique constraint to prevent duplicate entries in the watchlist for the same user and movie combination. This ensures that a user cannot add the same movie to their watchlist multiple times. 
+@@unique([userId, movieId])
+// 13.4 now run "npx prisma migrate dev --name add_constraints" and "npx prisma generate"
 
 }
 // 7.5 creating an enum for WatchListStatus

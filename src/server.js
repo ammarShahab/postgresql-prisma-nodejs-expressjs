@@ -6,6 +6,7 @@ import express from "express";
 // 4.4 import the movieRoute
 import movieRoute from "./routes/movieRoute.js";
 import authRoutes from "./routes/authRoutes.js";
+import watchListRoutes from "./routes/watchListRoutes.js";
 
 // 6.1 import the dotenv
 import { config } from "dotenv";
@@ -28,6 +29,9 @@ app.use("/movies", movieRoute);
 
 // 8.4 use the authRoutes
 app.use("/auth", authRoutes);
+
+// 13.2 use the watchListRoutes
+app.use("/watchlist", watchListRoutes);
 
 // 6.2 use the dotenv
 config();
