@@ -139,7 +139,7 @@ Flow:
 
 13.4 now run "npx prisma migrate dev --name add_constraints" and "npx prisma generate"
 
-13.5 Check movies exist in the watchlist e.g Result: { id: "1", userId: "user-123", movieId: "movie-456", status: "PLANNED". isMovieInTheWatchlist = truthy → Movie already in watchlist → Block duplicate entry
+13.5 Check movies exist in the watchlist e.g Result: { id: "1", userId: "user-123", movieId: "movie-456", status: "PLANNED"}. isMovieInTheWatchlist = truthy → Movie already in watchlist → Block duplicate entry
 
 13.6 If the movie is already in the watchlist, return an error response to prevent duplicate
 

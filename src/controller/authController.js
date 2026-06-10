@@ -35,10 +35,12 @@ const register = async (req, res) => {
   res.status(201).json({
     message: "success",
     data: {
-      id: user.id,
-      name,
-      email,
-      password,
+      user: {
+        id: user.id,
+        name,
+        email,
+        password,
+      },
       // 10.3 send the token
       token,
     },
@@ -69,8 +71,10 @@ const login = async (req, res) => {
   res.status(201).json({
     message: "success",
     data: {
-      id: user.id,
-      email,
+      user: {
+        id: user.id,
+        email,
+      },
       // 10.5 send the token
       token,
     },

@@ -3,7 +3,7 @@
 import { prisma } from "../config/db.js";
 
 const addToWatchList = async (req, res) => {
-  const { movieId, status, rating, note, userId } = req.body;
+  const { movieId, status, rating, note } = req.body;
 
   //13.2 verify if the movie exists in the database
   const movie = await prisma.movie.findUnique({
@@ -19,7 +19,7 @@ const addToWatchList = async (req, res) => {
     where: {
       //  Prisma auto-generates this name from your @@unique([userId, movieId])
       userId_movieId: {
-        userId: userId,
+        userId: req.user.id,
         movieId: movieId,
       },
     },
@@ -34,7 +34,7 @@ const addToWatchList = async (req, res) => {
   // 13.7 If the movie is not in the watchlist
   const watchlistItems = await prisma.watchList.create({
     data: {
-      userId,
+      userId: req.user.id,
       movieId,
       status: status || "PLANNED",
       note,
