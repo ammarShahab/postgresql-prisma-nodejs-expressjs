@@ -129,4 +129,22 @@ Flow:
 
 12.1 to run the script add seeding script in package.json "seed:movies": "node prisma/seed/seed.js" then run in the terminal "npm run seed:movies"
 
-<!-- todo: start tutorial from 1:37:10 -->
+13.0 My requirements is to create a watch list route so create a watchListRoute.js file and write the code like this
+
+13.1 create a watchListController.js file in controller folder and write the code like this
+
+13.2 use the watchListRoutes
+
+13.3 adding a unique constraint to prevent duplicate entries in the watchlist for the same user and movie combination. This ensures that a user cannot add the same movie to their watchlist multiple times.
+
+13.4 now run "npx prisma migrate dev --name add_constraints" and "npx prisma generate"
+
+13.5 Check movies exist in the watchlist e.g Result: { id: "1", userId: "user-123", movieId: "movie-456", status: "PLANNED". isMovieInTheWatchlist = truthy → Movie already in watchlist → Block duplicate entry
+
+13.6 If the movie is already in the watchlist, return an error response to prevent duplicate
+
+13.7 If the movie is not in the watchlist
+
+13.8 Now to Check pass the following data
+
+<!-- todo: start tutorial from 1:47:40 -->
