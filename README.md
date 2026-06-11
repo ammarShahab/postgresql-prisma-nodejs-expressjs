@@ -165,4 +165,4 @@ Flow:
 
 16.1 create the route
 
-<!-- todo: start tutorial from 2:07:0 -->
+<!-- todo: start tutorial pending zod validation from 2:11:00, github repo https://github.com/machadop1407/NodeJS-ExpressJS-BackendCourse -->
