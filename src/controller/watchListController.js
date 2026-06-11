@@ -44,8 +44,6 @@ const addToWatchList = async (req, res) => {
   res.status(201).json({ status: "success", data: { watchlistItems } });
 };
 
-export { addToWatchList };
-
 /*  13.8 Now to Check pass the following data
 {
   "movieId": "01KTNGFV7KTBE3GVGCTAFGCCSJ",
@@ -55,3 +53,29 @@ export { addToWatchList };
   "rating": 9
 }
 */
+
+// 15.0 my requirements is delete the movie from the watchlist
+
+const deleteMovieFromWatchList = async (req, res) => {
+  const watchListItem = await prisma.watchList.findUnique({
+    where: { id: req.params.id },
+  });
+
+  if (!watchListItem) {
+    return res.status(404).json({ error: "Watch list item does not exist" });
+  }
+
+  if (watchListItem.userId !== req.user.id) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  await prisma.watchList.delete({
+    where: { id: req.params.id },
+  });
+
+  res
+    .status(201)
+    .json({ status: "success", message: "Movie Removed from Watch list" });
+};
+
+export { addToWatchList, deleteMovieFromWatchList };
