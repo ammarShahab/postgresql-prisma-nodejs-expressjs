@@ -4,6 +4,7 @@ import express from "express";
 import {
   addToWatchList,
   deleteMovieFromWatchList,
+  updateWatchListMovie,
 } from "../controller/watchListController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
@@ -18,5 +19,8 @@ router.post("/", addToWatchList);
 
 // 15.1 create the watchList delete route
 router.delete("/:id", deleteMovieFromWatchList);
+
+// 16.1 create the route
+router.put("/:id", updateWatchListMovie);
 
 export default router;

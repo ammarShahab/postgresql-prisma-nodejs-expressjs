@@ -78,4 +78,43 @@ const deleteMovieFromWatchList = async (req, res) => {
     .json({ status: "success", message: "Movie Removed from Watch list" });
 };
 
-export { addToWatchList, deleteMovieFromWatchList };
+// 16.0 my requirement is update the movie from the watchlist
+const updateWatchListMovie = async (req, res) => {
+  // console.log("Full req.params:", req.params); // Should show { id: "..." }
+  // console.log("req.params.id:", req.params.id); // Should be the actual ID
+  const { status, rating, note } = req.body;
+
+  const watchListItem = await prisma.watchList.findUnique({
+    where: { id: req.params.id },
+  });
+
+  // console.log("watchListItem", watchListItem);
+
+  if (!watchListItem) {
+    return res.status(404).json({ error: "Watch list item does not exist" });
+  }
+
+  if (watchListItem.userId !== req.user.id) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  const updateData = {};
+
+  if (status !== undefined) updateData.status = status;
+  if (rating !== undefined) updateData.rating = rating;
+  if (note !== undefined) updateData.note = note;
+
+  await prisma.watchList.update({
+    where: { id: req.params.id },
+    data: updateData,
+  });
+
+  res.status(201).json({
+    status: "success",
+    data: {
+      watchlistItem: updateData,
+    },
+  });
+};
+
+export { addToWatchList, deleteMovieFromWatchList, updateWatchListMovie };
